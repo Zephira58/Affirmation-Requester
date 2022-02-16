@@ -14,7 +14,7 @@ def intro():
     enter()
     print("Hold C for credits")
     enter()
-    print("Hold 'Z' to choose a colour")
+    print("Press Z to choose a colour")
 #imports required code prereqesets
 import requests
 import keyboard
@@ -54,11 +54,12 @@ while True:
         intro()
     #Detects if the user presses Z and shows all of the colour options
     elif keyboard.read_key() == "z":
-        print("Press R for the colour Red")
-        print("Press B for the colour Blue")
-        print("Press G for the colour Green")
-        print("Press Y for the colour Yellow")
-        t5()
+        print(Fore.RED +"Press R for the colour Red")
+        print(Fore.BLUE + "Press B for the colour Blue")
+        print(Fore.GREEN + "Press G for the colour Green")
+        print(Fore.YELLOW + "Press Y for the colour Yellow")
+        print(Fore.WHITE)
+        time.sleep(1)
     #If at any point the user presses one of the colour buttons; it will change the text to be that colour!
     elif keyboard.read_key() == "r":
         cls()
@@ -87,7 +88,7 @@ while True:
     #When "Q" is pressed it will shut down the application.
     elif keyboard.read_key() == "q":
         cls()
-        print("I hope you have a wounderful day!")
+        print("I hope you have a wonderful day!")
         time.sleep(5)
         break
     #When "C" is pressed it will show the my credits
