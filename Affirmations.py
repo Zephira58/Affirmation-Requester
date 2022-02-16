@@ -10,12 +10,15 @@ def enter():
 def intro():
     print('Hold A for an affirmation')
     enter()
+    print("Hold I For an image based, AI generated affirmation")
+    enter()
     print("Hold Q to exit")
     enter()
     print("Hold C for credits")
     enter()
     print("Press Z to choose a colour")
 #imports required code prereqesets
+from cgi import print_form
 import requests
 import keyboard
 import time
@@ -53,6 +56,29 @@ while True:
         cls()
         intro()
     #Detects if the user presses Z and shows all of the colour options
+    elif keyboard.read_key() == "i":
+    #Displays the Generating animation
+        cls()
+        print('Generating')
+        t5()
+        cls()
+        print('Generating.')
+        t5()
+        cls()
+        print('Generating..')
+        t5()
+        cls()
+        print('Generating...')
+    #Requests and prints the affirmation
+        affirmation = requests.get('https://inspirobot.me/api?generate=true')
+        s1=affirmation.text
+        print(s1)
+        enter()
+        print("If your using the windows terminal press control and left click to follow the link.")
+        print("Otherwise Copy and paste the link into your web browser")
+        time.sleep(10)
+        cls()
+        intro()
     elif keyboard.read_key() == "z":
         print(Fore.RED +"Press R for the colour Red")
         print(Fore.BLUE + "Press B for the colour Blue")
