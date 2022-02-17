@@ -16,13 +16,13 @@ def intro():
     enter()
     print("Hold C for credits")
     enter()
-    print("Press Z to choose a colour")
+    print("Hold Z to choose a colour")
 #imports required code prereqesets
-from cgi import print_form
 import requests
 import keyboard
 import time
 import os
+import webbrowser
 from colorama import Fore, Back, Style
 #Explains how to use the application
 intro()
@@ -30,34 +30,34 @@ intro()
 while True:
     #If the user presses "A" it will make a get request to an affirmation API
     if keyboard.read_key() == "a":
-    #Displays the Generating animation
+        #Displays the Fetching animation
         cls()
-        print('Generating')
+        print('Fetching')
         t5()
         cls()
-        print('Generating.')
+        print('Fetching.')
         t5()
         cls()
-        print('Generating..')
+        print('Fetching..')
         t5()
         cls()
-        print('Generating...')
-    #Requests and prints the affirmation
+        print('Fetching...')
+        #Requests and Displays the affirmation
         affirmation = requests.get('https://www.affirmations.dev/')
         s1=affirmation.text
         s2=s1.replace("{","")
         s3=s2.replace("}","")
         s4=s3.replace(":","")
         s5=s4.replace("affirmation","")
-        s6=s5.strip('"')
+        s6=s5.strip('"',)
         cls()
         print(s6)
         time.sleep(5)
         cls()
         intro()
-    #Detects if the user presses Z and shows all of the colour options
+    #If the user presses "I" It will make an api request to generate an affirmation
     elif keyboard.read_key() == "i":
-    #Displays the Generating animation
+        #Displays the Generating animation
         cls()
         print('Generating')
         t5()
@@ -69,24 +69,29 @@ while True:
         t5()
         cls()
         print('Generating...')
-    #Requests and prints the affirmation
+        #Requests and prints the affirmation
         affirmation = requests.get('https://inspirobot.me/api?generate=true')
         s1=affirmation.text
         print(s1)
+        webbrowser.open(s1)
+        enter()
+        print("Please check your web browser; the image should be open. If not follow the steps below")
         enter()
         print("If your using the windows terminal press control and left click to follow the link.")
         print("Otherwise Copy and paste the link into your web browser")
-        time.sleep(10)
+        time.sleep(7)
         cls()
         intro()
+    #Detects if the user presses Z and shows all of the colour options
     elif keyboard.read_key() == "z":
-        print(Fore.RED +"Press R for the colour Red")
-        print(Fore.BLUE + "Press B for the colour Blue")
-        print(Fore.GREEN + "Press G for the colour Green")
-        print(Fore.YELLOW + "Press Y for the colour Yellow")
+        cls()
+        print(Fore.RED +"Hold R for the colour Red")
+        print(Fore.BLUE + "Hold B for the colour Blue")
+        print(Fore.GREEN + "Hold G for the colour Green")
+        print(Fore.YELLOW + "Hold Y for the colour Yellow")
         print(Fore.WHITE)
         time.sleep(1)
-    #If at any point the user presses one of the colour buttons; it will change the text to be that colour!
+    #If the user presses one of the colour buttons on the main menu; or colour menu. It will change the text to be that colour!
     elif keyboard.read_key() == "r":
         cls()
         print(Fore.RED + "You have chosen the colour red!")
@@ -120,16 +125,22 @@ while True:
     #When "C" is pressed it will show the my credits
     elif keyboard.read_key() == "c":
         cls()
-        print("Made by Xanthus In his spare time")
+        print("Made by Xanthus In my spare time")
         enter()
         print("Check out my other works at https://github.com/Xanthus58")
         enter()
         print("Email me on 'Xanthus58@protonmail.com'")
-        time.sleep(5)
+        enter()
+        print("Feel free to fork; submit issues; or otherwise interact with the project here!")
+        print("https://github.com/Xanthus58/Affirmation-Requester")
+        enter()
+        print("Press Enter to return to the main menu.")
+        input()
         cls()
         intro()
     #If another key is detected it asks for a propper input
     elif keyboard.read_key() != "a":
+        cls()
         print ('Please press "A" for an affirmation "Q" to exit or "Z" For a colour')
         time.sleep(5)
         cls()
